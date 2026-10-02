@@ -1,0 +1,80 @@
+# Local environment: PostgreSQL, Redis, a one-shot migration job, the API and the outbox worker.
+#   docker compose up -d --build
+# All credentials below are local development values only.
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+  restart: unless-stopped
+  depends_on:
+    migrate:
+      condition: service_completed_successfully
+    redis:
+      condition: service_healthy
+  environment: &app-env
+    DATABASE_URL: postgres://saas_app:app-local-dev@postgres:5432/saas
+    REDIS_URL: redis://redis:6379
+    PLATFORM_API_KEY: local-dev-platform-key-change-me-0000
+    LOG_LEVEL: info
+    HTTP_PORT: "3000"
+  healthcheck:
+    test: ["CMD", "wget", "-qO-", "http://localhost:3000/health/ready"]
+    interval: 10s
+    timeout: 3s
+    retries: 5
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: saas_owner
+      POSTGRES_PASSWORD: owner-local-dev
+      POSTGRES_DB: saas
+    ports: ["${POSTGRES_PORT:-5432}:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U saas_owner -d saas"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ["${REDIS_PORT:-6379}:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  migrate:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: ["node", "dist/scripts/migrate.js"]
+    environment:
+      MIGRATION_DATABASE_URL: postgres://saas_owner:owner-local-dev@postgres:5432/saas
+      APP_DB_PASSWORD: app-local-dev
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *app
+    environment:
+      <<: *app-env
+      SERVICE_NAME: saas-api
+      ROLES: api
+    ports: ["${API_PORT:-3000}:3000"]
+
+  worker:
+    <<: *app
+    environment:
+      <<: *app-env
+      SERVICE_NAME: saas-worker
+      ROLES: worker
+
+volumes:
+  pgdata:
