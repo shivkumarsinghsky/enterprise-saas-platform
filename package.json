@@ -1,5 +1,5 @@
 {
-  "name": "enterprise-saas-plateform",
+  "name": "enterprise-saas-platform",
   "version": "1.0.0",
   "description": "Multi-tenant enterprise SaaS reference architecture: tenant isolation with PostgreSQL RLS, tenant-aware auth, RBAC, entitlements, audit logging, rate limiting",
   "author": "Shiv Kumar (https://github.com/shivkumarsinghsky)",

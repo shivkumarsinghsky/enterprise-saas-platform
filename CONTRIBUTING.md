@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in `enterprise-saas-plateform`. This repository is a reference implementation, so contributions that
+Thanks for your interest in `enterprise-saas-platform`. This repository is a reference implementation, so contributions that
 improve clarity, correctness or test coverage are the most valuable.
 
 ## Workflow

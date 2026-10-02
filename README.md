@@ -1,6 +1,6 @@
 # Enterprise SaaS Platform — Multi-Tenant Reference Architecture
 
-[![CI](https://github.com/shivkumarsinghsky/enterprise-saas-plateform/actions/workflows/ci.yml/badge.svg)](https://github.com/shivkumarsinghsky/enterprise-saas-plateform/actions/workflows/ci.yml)
+[![CI](https://github.com/shivkumarsinghsky/enterprise-saas-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/shivkumarsinghsky/enterprise-saas-platform/actions/workflows/ci.yml)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%20RLS-336791)
 ![Redis](https://img.shields.io/badge/Redis-7-dc382d)
@@ -115,7 +115,7 @@ Full trade-off analysis, tenant move runbook and reasoning: [docs/tenancy-models
 ## Repository Structure
 
 ```text
-enterprise-saas-plateform/
+enterprise-saas-platform/
 ├── src/
 │   ├── main.ts                    # composition root: config, pools, Redis, tokens, app, worker
 │   ├── config.ts                  # validated environment configuration
@@ -139,8 +139,8 @@ enterprise-saas-plateform/
 ### Docker
 
 ```bash
-git clone https://github.com/shivkumarsinghsky/enterprise-saas-plateform.git
-cd enterprise-saas-plateform
+git clone https://github.com/shivkumarsinghsky/enterprise-saas-platform.git
+cd enterprise-saas-platform
 docker compose up -d --build     # postgres, redis, migrate (one-shot), api, worker
 ```
 
@@ -305,7 +305,7 @@ Not implemented yet:
 - [EAM Platform Architecture](https://github.com/shivkumarsinghsky/eam-platform-architecture) — enterprise asset management domain (the assets module)
 - [Event-Driven Platform](https://github.com/shivkumarsinghsky/event-driven-platform) — outbox relay to RabbitMQ, idempotent consumers
 - [Microservices Patterns](https://github.com/shivkumarsinghsky/microservices-patterns) — authentication, authorization, bulkhead, idempotency
-- [Enterprise AI Agent Platform](https://github.com/shivkumarsinghsky/enterprise-ai-agent-plateform) — tenant-aware AI agents with tool authorization
+- [Enterprise AI Agent Platform](https://github.com/shivkumarsinghsky/enterprise-ai-agent-platform) — tenant-aware AI agents with tool authorization
 
 ## Author
 

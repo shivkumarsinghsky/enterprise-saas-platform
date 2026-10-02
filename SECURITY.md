@@ -1,12 +1,12 @@
 # Security Policy
 
-`enterprise-saas-plateform` is a portfolio / reference implementation maintained by
+`enterprise-saas-platform` is a portfolio / reference implementation maintained by
 [Shiv Kumar](https://github.com/shivkumarsinghsky). It is not operated as a hosted service.
 
 ## Reporting a vulnerability
 
 Please report security issues privately through GitHub's
-[private vulnerability reporting](https://github.com/shivkumarsinghsky/enterprise-saas-plateform/security/advisories/new)
+[private vulnerability reporting](https://github.com/shivkumarsinghsky/enterprise-saas-platform/security/advisories/new)
 rather than opening a public issue. Include steps to reproduce and the affected files or components.
 
 ## Scope

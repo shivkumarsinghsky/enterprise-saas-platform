@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: docker compose config -q
-      - run: docker build -f docker/Dockerfile -t enterprise-saas-plateform:ci .
+      - run: docker build -f docker/Dockerfile -t enterprise-saas-platform:ci .
 
   docs:
     name: Documentation checks
